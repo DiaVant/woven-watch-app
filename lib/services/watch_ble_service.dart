@@ -168,6 +168,7 @@ class WatchBleService extends ChangeNotifier {
   static final WatchBleService instance = WatchBleService._internal();
 
   final Map<String, WovenWatch> _watches = {};
+  final Set<String> _simulated = {};
   bool _isScanning = false;
   final StreamController<PredictionEvent> _predictions =
       StreamController.broadcast();
@@ -192,7 +193,7 @@ class WatchBleService extends ChangeNotifier {
   Future<void> startScan({
     Duration timeout = const Duration(seconds: 8),
   }) async {
-    if (_isScanning) return;
+    if (_isScanning || isSimulating) return;
     try {
       await FlutterBluePlus.startScan(
         withServices: [uartServiceUuid],
@@ -245,6 +246,7 @@ class WatchBleService extends ChangeNotifier {
 
   WovenWatch? _seen(String id) {
     final watch = _watches[id];
+    if (_simulated.contains(id)) return watch;
     return watch?.device != null ? watch : null;
   }
 
@@ -270,6 +272,11 @@ class WatchBleService extends ChangeNotifier {
   }
 
   Future<void> connect(WovenWatch watch) async {
+    if (_simulated.contains(watch.id)) {
+      watch.isConnected = true;
+      notifyListeners();
+      return;
+    }
     final device = watch.device;
     if (device == null) {
       throw StateError('${watch.id} has not been seen in a scan yet.');
@@ -355,6 +362,36 @@ class WatchBleService extends ChangeNotifier {
       watch.isConnected = false;
       notifyListeners();
     }
+  }
+
+  //demo watches: no bluetooth, lines go through the same parser
+  bool get isSimulating => _simulated.isNotEmpty;
+
+  bool isSimulated(String id) => _simulated.contains(id);
+
+  void addSimulatedWatches(Iterable<String> ids) {
+    for (final id in ids) {
+      _simulated.add(id);
+      _watches[id] = WovenWatch(id: id)
+        ..rssi = -58
+        ..lastSeen = DateTime.now()
+        ..isConnected = true;
+    }
+    notifyListeners();
+  }
+
+  void receiveSimulatedLine(String id, String line) {
+    final watch = _watches[id];
+    if (watch == null || !_simulated.contains(id) || !watch.isConnected) return;
+    _onData(watch, utf8.encode('$line\n'));
+  }
+
+  void removeSimulatedWatches() {
+    for (final id in _simulated) {
+      _watches.remove(id);
+    }
+    _simulated.clear();
+    notifyListeners();
   }
 
   //for tests

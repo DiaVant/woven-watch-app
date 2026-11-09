@@ -59,8 +59,15 @@ class LocalStore extends ChangeNotifier {
   })  : _backend = backend,
         _clock = clock ?? DateTime.now;
 
-  static final LocalStore instance =
+  static final LocalStore device =
       LocalStore(backend: StoreBackend.platformDefault());
+
+  static LocalStore _current = device;
+
+  //the demo swaps in a memory store so real sessions are never touched
+  static LocalStore get instance => _current;
+
+  static void use(LocalStore? store) => _current = store ?? device;
 
   static const int keptEndedSessions = 10;
 

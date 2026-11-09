@@ -14,11 +14,36 @@ simple: help teachers notice a quiet signal before discomfort escalates.
 
 ## Screenshots
 
-| Live classroom view | Student timeline | Alert settings |
-|:---:|:---:|:---:|
-| _V1 UI screenshot coming soon_ | _V1 UI screenshot coming soon_ | _V1 UI screenshot coming soon_ |
-
-<!-- Replace the cells above with screenshots when the updated public UI is ready. -->
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/media/bluetooth-devices.png" alt="Bluetooth watch connection page" width="260"><br>
+      <strong>1. Bluetooth connection</strong>
+    </td>
+    <td align="center">
+      <img src="docs/media/classroom-grid.png" alt="Classroom overview with every class" width="260"><br>
+      <strong>2. Classroom overview</strong>
+    </td>
+    <td align="center">
+      <img src="docs/media/live-classroom-view.png" alt="Live classroom view with student watch status" width="260"><br>
+      <strong>3. Live classroom</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/media/student-live-timeline.png" alt="Student timeline and session statistics" width="260"><br>
+      <strong>4. Student timeline</strong>
+    </td>
+    <td align="center">
+      <img src="docs/media/sensitivity-alerts.png" alt="Per-student alert sensitivity settings" width="260"><br>
+      <strong>5. Alert sensitivity</strong>
+    </td>
+    <td align="center">
+      <img src="docs/media/alerts-feed.png" alt="Alerts feed with current and past alerts" width="260"><br>
+      <strong>6. Alerts</strong>
+    </td>
+  </tr>
+</table>
 
 ## How it works
 
@@ -88,8 +113,19 @@ flutter run
 ```
 
 When Flutter asks you to select a target, choose an available iOS or Android device or
-simulator. Once the app opens, click **Sign Up** to create an account, then log in and
-you are all set. The app can be explored without a watch.
+simulator. Once the app opens, there are two ways to get started:
+
+1. **Try the demo** - Select **Try the demo** on the launch page to enter a simulated
+   live classroom immediately. The demo generates live watch readings for five made-up
+   students, so you can experience the classroom dashboard, student timelines, and
+   alerts without an account or physical watch.
+2. **Create an account** - Select **Create New Account**, complete the sign-up process,
+   then log in. You are all set to create classes, assign watches, and use Woven Watch
+   with your own account.
+
+<p align="center">
+  <img src="docs/media/login-signup.png" alt="Woven Watch login and sign-up page" width="300">
+</p>
 
 The repository is already connected to Woven Watch's Firebase project. After launching
 the app, no additional Firebase setup is required. Each account can access only its own

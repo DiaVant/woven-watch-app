@@ -12,9 +12,12 @@ import 'package:trackapp/widgets/watch_detail_dialog.dart';
 import 'package:trackapp/widgets/watch_roster.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, this.classService});
+  const HomeScreen({super.key, this.classService, this.openClass});
 
   final ClassService? classService;
+
+  //opened on top right away (the demo starts in its class)
+  final CareClass? openClass;
 
   @override
   State<HomeScreen> createState() => HomeScreenState();
@@ -103,6 +106,11 @@ class HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     LocalStore.instance.load(); //list open/closed state
+    if (widget.openClass case final careClass?) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) openClassPage(careClass);
+      });
+    }
   }
 
   @override

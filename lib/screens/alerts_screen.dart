@@ -75,7 +75,7 @@ class _AlertsScreenState extends State<AlertsScreen> {
     );
   }
 
-  void _openStudent(ClassDevice device) {
+  void _openSettings(ClassDevice device) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -207,7 +207,8 @@ class _AlertsScreenState extends State<AlertsScreen> {
                                 .where((e) => e.deviceId == past[i].deviceId)
                                 .toList(),
                             quiet: isQuiet(classId, past[i].deviceId),
-                            onTap: () => _openStudent(past[i]),
+                            onTap: () => _openDetail(past[i]),
+                            onSettings: () => _openSettings(past[i]),
                           ),
                         ],
                       ],
@@ -470,6 +471,7 @@ class _PastRow extends StatelessWidget {
     required this.entries,
     required this.quiet,
     required this.onTap,
+    required this.onSettings,
   });
 
   final String classId;
@@ -477,7 +479,8 @@ class _PastRow extends StatelessWidget {
 
   final List<AlertLogEntry> entries;
   final bool quiet;
-  final VoidCallback onTap;
+  final VoidCallback onTap; //student page
+  final VoidCallback onSettings;
 
   @override
   Widget build(BuildContext context) {
@@ -552,7 +555,11 @@ class _PastRow extends StatelessWidget {
                     color: appMuted, size: 20),
                 onPressed: () => toggleQuiet(classId, device.deviceId),
               ),
-            const Icon(Icons.chevron_right, color: appMuted),
+            IconButton(
+              tooltip: 'Alert sensitivity',
+              icon: const Icon(Icons.tune, color: appIndigo),
+              onPressed: onSettings,
+            ),
           ],
         ),
       ),

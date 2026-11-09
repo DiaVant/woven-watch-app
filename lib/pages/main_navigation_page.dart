@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:trackapp/demo/demo_mode.dart';
+import 'package:trackapp/models/care_class.dart';
 import 'package:trackapp/pages/account_page.dart';
 import 'package:trackapp/screens/home_screen.dart';
 import 'package:trackapp/screens/devices_screen.dart';
+import 'package:trackapp/services/class_service.dart';
 import 'package:trackapp/theme/app_theme.dart';
 
 class NavigationItem {
@@ -19,7 +22,11 @@ class NavigationItem {
 }
 
 class MainNavigationPage extends StatefulWidget {
-  const MainNavigationPage({super.key});
+  const MainNavigationPage({super.key, this.classService, this.openClass});
+
+  //the demo passes its own, otherwise firebase
+  final ClassService? classService;
+  final CareClass? openClass;
   
   @override
   State<MainNavigationPage> createState() => MainNavigationPageState();
@@ -28,16 +35,19 @@ class MainNavigationPage extends StatefulWidget {
 class MainNavigationPageState extends State<MainNavigationPage> {
   int currScreenIndex = 0;
 
- final _items = [
+  late final _items = [
     NavigationItem(
       title: 'Home',
-      screen: HomeScreen(),
+      screen: HomeScreen(
+        classService: widget.classService,
+        openClass: widget.openClass,
+      ),
       icon: Icons.home_outlined,
       label: 'Home',
     ),
     NavigationItem(
       title: 'Devices',
-      screen: DevicesScreen(),
+      screen: DevicesScreen(classService: widget.classService),
       icon: Icons.bluetooth,
       label: 'Devices',
     ),
@@ -57,6 +67,8 @@ class MainNavigationPageState extends State<MainNavigationPage> {
           ],
         ),
         actions: [
+          //the account page is firebase, the demo has none
+          if (!DemoMode.isActive)
           IconButton(
             tooltip: 'Account',
             icon: CircleAvatar(

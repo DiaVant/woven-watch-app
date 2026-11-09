@@ -91,6 +91,8 @@ class AlertManager extends ChangeNotifier {
     _syncClass(classId);
   }
 
+  WatchSettingsService? get settingsService => _settingsService;
+
   void attachSettings(WatchSettingsService? service) {
     _settingsService = service;
     final classId = _syncedClassId;

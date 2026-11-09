@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trackapp/demo/demo_mode.dart';
 import 'package:trackapp/models/care_class.dart';
 import 'package:trackapp/pages/add_device.dart';
 import 'package:trackapp/services/class_service.dart';
@@ -34,6 +35,11 @@ class DevicesScreenState extends State<DevicesScreen> {
   }
 
   void navigateToAddDevicesPage() {
+    //adding a real watch saves it to an account
+    if (DemoMode.isActive) {
+      _showSnackBar('Adding a watch needs an account and a real watch.');
+      return;
+    }
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const AddDevicePage()),
@@ -47,6 +53,10 @@ class DevicesScreenState extends State<DevicesScreen> {
   }
 
   Future<void> _startScan() async {
+    if (DemoMode.isActive) {
+      _showSnackBar('Demo watches are always nearby, no scan needed.');
+      return;
+    }
     setState(() => _lastScanAt = DateTime.now());
     try {
       await _bleService.startScan();

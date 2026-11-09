@@ -111,4 +111,33 @@ void main() {
     expect(find.byType(StudentDetailScreen), findsOneWidget);
     await finish(tester);
   });
+
+  testWidgets('a past alert opens the student; its settings icon opens settings',
+      (tester) async {
+    const student = ClassDevice(deviceId: 'w-past', studentName: 'Leo T.');
+    final cls = CareClass(
+      id: 'past',
+      name: 'Room 12',
+      colorHex: '#6662D9',
+      createdAt: 0,
+      updatedAt: 0,
+      devices: const [student],
+    );
+    for (var i = 0; i < 3; i++) {
+      manager.inject('past', 'w-past', FidgetLabel.lowFidgeting);
+    }
+    await pump(tester, AlertsScreen(careClass: cls));
+
+    await tester.tap(find.byTooltip('Alert sensitivity'));
+    await tester.pumpAndSettle();
+    expect(find.byType(AlertSensitivityScreen), findsOneWidget);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Leo T.').last); //the past row, not the now card
+    await tester.pumpAndSettle();
+    expect(find.byType(StudentDetailScreen), findsOneWidget);
+    expect(find.byType(AlertSensitivityScreen), findsNothing);
+    await finish(tester);
+  });
 }

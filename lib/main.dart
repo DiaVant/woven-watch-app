@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:trackapp/demo/demo_mode.dart';
 import 'package:trackapp/pages/splash_page.dart';
 import 'package:trackapp/services/alert_manager.dart';
 import 'package:trackapp/services/local_data_mover.dart';
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: appName,
       debugShowCheckedModeBanner: false,
+      navigatorKey: appNavigatorKey,
+      builder: demoFrame,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: appIndigo,

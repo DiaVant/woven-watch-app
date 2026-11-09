@@ -14,3 +14,18 @@ abstract class StoreBackend {
   //files on phone/desktop, localStorage on web
   factory StoreBackend.platformDefault() => platform.createDefaultBackend();
 }
+
+//nothing leaves memory
+class MemoryBackend implements StoreBackend {
+  final Map<String, String> _files = {};
+
+  @override
+  Future<String?> read(String name) async => _files[name];
+
+  @override
+  Future<void> write(String name, String contents) async =>
+      _files[name] = contents;
+
+  @override
+  Future<void> delete(String name) async => _files.remove(name);
+}
