@@ -95,17 +95,17 @@ Download [Woven Watch from the App Store](https://apps.apple.com/us/app/wovenwat
 
 ### Download and run locally
 
-You will need [Git](https://git-scm.com/downloads) and the stable version of
-[Flutter](https://docs.flutter.dev/get-started/install).
-
-1. Download the project and enter its folder:
+Install [Git](https://git-scm.com/downloads) and the stable version of
+[Flutter](https://docs.flutter.dev/get-started/install), then clone the repository:
 
 ```bash
 git clone https://github.com/DiaVant/woven-watch-app.git
 cd woven-watch-app
 ```
 
-2. Install the app's packages and run it:
+#### Run the app
+
+From inside the project folder, install the app's packages and run it:
 
 ```bash
 flutter pub get
