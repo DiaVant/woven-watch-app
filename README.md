@@ -1,101 +1,131 @@
 # Woven Watch
 
-A teacher app for classrooms with neurodivergent students. Each student wears a small
-watch that senses movement and reports, every 2.5 seconds, whether they are calm, lightly
-fidgeting, or fidgeting a lot. The app shows the whole class live and alerts the teacher
-when a student's fidgeting keeps going, so they can check in early.
+Woven Watch is a wearable classroom system that helps teachers notice when a
+neurodivergent student may need support. A wrist-worn sensor recognizes sustained
+changes in movement, while a companion app gives the teacher a private, real-time view
+of the class and sends an alert when elevated movement continues.
 
-**Try it:** https://fir-98546.web.app (sign up with any email)
+Woven Watch is designed to support an educator's judgment, not replace it. Its goal is
+simple: help teachers notice a quiet signal before discomfort escalates.
 
-## What it does
+> **Project status:** Woven Watch is now available on the
+> [App Store](https://apps.apple.com/us/app/wovenwatch/id6787783832). The currently
+> published version uses the V1 interface; an updated public-facing UI is coming soon.
 
-- **Live class view.** Every student's current state (calm, low, high), their recent
-  readings, and how long the current stretch has lasted.
-- **Alerts after sustained fidgeting.** An alert fires after a set number of fidget
-  readings in a row and repeats while it continues. Tap the alert to open that student.
-- **Student page.** A session timeline showing each period and how long it lasted, time in
-  each state, the longest fidget, alert count, and signal quality.
-- **Three sensitivity controls per student:** readings in a row (1–4), how often an alert
-  repeats (10 s to 2 min), and a minimum watch confidence. A built-in explainer walks
-  through a worked example, reading by reading, so it's clear how an alert is decided.
-  Each student's alert log shows how many high and low readings triggered every alert.
-- **Quiet mode.** Mute a student's alerts while still recording them.
-- **Classes and watches.** Create classes, assign watches, name students per class. The
-  same watch can be used in two classes by different students.
-- **Bluetooth.** Scan for watches, connect, and reconnect with one tap.
+## Screenshots
 
-## Running it
+| Live classroom view | Student timeline | Alert settings |
+|:---:|:---:|:---:|
+| _V1 UI screenshot coming soon_ | _V1 UI screenshot coming soon_ | _V1 UI screenshot coming soon_ |
 
-| Platform | Bluetooth to watches |
-|---|---|
-| Chrome or Edge (desktop, Android) | Yes |
-| iOS and Android app | Yes |
-| Safari, Firefox, iPhone browsers | No (Web Bluetooth isn't supported). Everything else works. |
+<!-- Replace the cells above with screenshots when the updated public UI is ready. -->
 
-Without a watch you can still sign up, create classes and explore the screens.
+## How it works
 
-### Locally
+1. The watch's six-axis accelerometer and gyroscope measure wrist movement.
+2. A machine-learning classifier runs directly on the watch and classifies movement as
+   calm, low fidgeting, or high fidgeting.
+3. Every 2.5 seconds, the watch sends only the classification and a confidence score to
+   the teacher's device over Bluetooth. Raw motion data never leaves the watch.
+4. The app updates the classroom dashboard and alerts the teacher when elevated readings
+   continue long enough to meet that student's settings.
+5. The teacher can open the student's timeline to see when movement changed, how long
+   each period lasted, and why an alert was sent.
 
-Requires [Flutter](https://docs.flutter.dev/get-started/install) (stable channel).
+Because every student expresses discomfort differently, teachers can adjust three alert
+controls for each student: the required confidence, the number of consecutive readings,
+and how frequently an alert repeats. The same watch can also be assigned to different
+students in different class periods, reducing the amount of hardware a classroom needs.
+
+## What the app includes
+
+- A live classroom dashboard showing every student's current movement state
+- Private alerts after sustained elevated movement
+- Individual timelines, session statistics, alert history, and signal quality
+- Per-student sensitivity and repeat-frequency controls
+- Quiet mode, which pauses notifications without stopping session recording
+- Custom classes, color coding, student rosters, and reusable watch assignments
+- Bluetooth scanning, connection, and one-tap reconnection
+
+## Privacy by design
+
+Woven Watch was built for classrooms, where student privacy matters.
+
+- Movement classification happens on the watch. Raw motion data is not transmitted.
+- Firebase stores only a teacher's account configuration: classes, optional student
+  names, watch assignments, alert settings, and quiet-mode preferences.
+- Session readings and alert history remain on the teacher's device. They are retained
+  for up to two hours and the ten most recent sessions, then erased on sign-out.
+- Firebase security rules restrict each signed-in teacher to their own data. Deleting an
+  account also deletes that teacher's cloud data.
+
+## Download and run
+
+### Install on iPhone or iPad
+
+Download [Woven Watch from the App Store](https://apps.apple.com/us/app/wovenwatch/id6787783832).
+
+> **UI note:** The current published app uses the V1 interface. An updated public-facing
+> UI is coming soon.
+
+### Download and run locally
+
+You will need [Git](https://git-scm.com/downloads) and the stable version of
+[Flutter](https://docs.flutter.dev/get-started/install).
+
+1. Download the project and enter its folder:
+
+```bash
+git clone https://github.com/DiaVant/woven-watch-app.git
+cd woven-watch-app
+```
+
+2. Install the app's packages and run it:
 
 ```bash
 flutter pub get
-flutter run -d chrome
+flutter run
 ```
 
-Run the tests:
+When Flutter asks you to select a target, choose an available iOS or Android device or
+simulator. Once the app opens, click **Sign Up** to create an account, then log in and
+you are all set. The app can be explored without a watch.
 
-```bash
-flutter test
-```
+The repository is already connected to Woven Watch's Firebase project. After launching
+the app, no additional Firebase setup is required. Each account can access only its own
+data.
 
-### With your own Firebase project
+## Technical design
 
-The app uses Firebase Authentication (email and password) and the Realtime Database.
+The watch uses an ESP32-S3 microcontroller and a k-nearest neighbors classifier written
+in CircuitPython. Every 2.5 seconds, it extracts 28 features from the previous five
+seconds of motion. The original training set contained approximately 1,300 labeled
+movement windows collected with parental consent. To fit the model within the watch's
+memory, a balanced subset of 135 examples is packaged into a binary file for the
+firmware.
 
-1. Create a Firebase project. Enable **Email/Password** sign-in and a **Realtime Database**.
-2. Point the app at it: `dart pub global activate flutterfire_cli`, then
-   `flutterfire configure`. This rewrites `lib/firebase_options.dart`.
-3. Publish the database rules and the web app:
-   ```bash
-   flutter build web --release
-   firebase deploy --only hosting,database
-   ```
-   Update `.firebaserc` with your project id first.
+The app is written in Dart and Flutter. Firebase provides authentication and stores
+teacher configuration, while session data remains on-device.
 
-## Data and privacy
+Each watch advertises over Bluetooth Low Energy as `wwWatch-XXXX` and sends one line over
+the Nordic UART service:
 
-The students are minors, so the app keeps as little as possible in the cloud.
-
-- **In Firebase**, under each teacher's own account only: class names and colours, which
-  watches are in each class, optional student names, alert settings and quiet mode. The
-  rules in `database.rules.json` let a signed-in teacher read and write only their own data.
-- **On the device only**: session history (readings and alerts), kept for up to 2 hours
-  and the last 10 sessions. It is never uploaded and is erased on sign-out.
-- Deleting an account removes all of that teacher's data from Firebase.
-
-## How a watch talks to the app
-
-Each watch advertises over Bluetooth LE as `wwWatch-XXXX` and sends one line every 2.5 s
-over the Nordic UART service:
-
-```
+```text
 pred,<label>,<votes>
 ```
 
-`label` is `not_fidgeting`, `low_fidgeting` or `high_fidgeting`. `votes` is how many of
-the watch's 5 nearest-neighbour matches agreed (3–5). Classification happens on the
-watch; all alert logic and settings live in the app.
+`label` is `not_fidgeting`, `low_fidgeting`, or `high_fidgeting`. `votes` records how
+many of the model's five nearest matches agreed with the classification, from 3 to 5.
 
-## Project layout
+## Project structure
 
-```
+```text
 lib/
-  services/   alert engine, Bluetooth, Firebase services, on-device storage
-  screens/    home, class page, student detail, alerts, sensitivity, devices
-  pages/      sign-in, sign-up, onboarding, account
+  services/   alert engine, Bluetooth, Firebase services, and on-device storage
+  screens/    home, class view, student details, alerts, sensitivity, and devices
+  pages/      sign-in, sign-up, onboarding, and account
   widgets/    shared tiles and dialogs
   models/     classes and watches
 test/         unit and widget tests
-database.rules.json   Realtime Database security rules
+database.rules.json   Firebase Realtime Database security rules
 ```
