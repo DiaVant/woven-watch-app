@@ -128,7 +128,7 @@ simulator. Once the app opens, there are two ways to get started:
 </p>
 
 The repository is already connected to Woven Watch's Firebase project. After launching
-the app, no additional Firebase setup is required. Each account can access only its own
+the app, no additional Firebase setup is required. Each account can only access its own
 data.
 
 ## Technical design
