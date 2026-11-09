@@ -1,0 +1,78 @@
+WOVENWATCH END-USER LICENSE AGREEMENT (EULA)
+
+Last updated: July 5, 2026
+
+Please read this End-User License Agreement ("Agreement") carefully before tapping "Accept" or using the WovenWatch application ("Application"). By tapping "Accept," creating an account, or using the Application, you agree to be bound by the terms of this Agreement. If you do not agree to these terms, do not use the Application.
+
+1. ACKNOWLEDGEMENT
+
+This Agreement is concluded between you and the developer of WovenWatch ("Developer") only, and not with Apple Inc. ("Apple"). The Developer, not Apple, is solely responsible for the Application and its content. This Agreement may not provide for usage rules that conflict with the Apple Media Services Terms and Conditions, and to the extent of any conflict, Apple's terms control.
+
+2. SCOPE OF LICENSE
+
+The Developer grants you a limited, non-exclusive, non-transferable, revocable license to use the Application for your personal or organizational care-coordination purposes, strictly in accordance with this Agreement. For copies obtained through the Apple App Store, the license is limited to use on any Apple-branded products that you own or control, as permitted by the Usage Rules set forth in the Apple Media Services Terms and Conditions, except that the Application may be accessed and used by other accounts associated with you via Family Sharing or volume purchasing.
+
+You may not: (a) copy, modify, or create derivative works of the Application; (b) reverse engineer, decompile, or disassemble the Application except to the extent permitted by applicable law; (c) rent, lease, lend, sell, redistribute, or sublicense the Application; or (d) use the Application for any unlawful purpose.
+
+3. DESCRIPTION OF THE APPLICATION; NOT A MEDICAL DEVICE
+
+WovenWatch helps caregivers and educators organize compatible wearable devices, groups ("classes"), and related activity information in one dashboard.
+
+THE APPLICATION IS NOT A MEDICAL DEVICE AND IS NOT INTENDED TO DIAGNOSE, TREAT, CURE, MONITOR FOR EMERGENCIES, OR PREVENT ANY DISEASE OR CONDITION. Information displayed by the Application (including heart rate, movement, or status indicators) is provided for general informational purposes only, may be inaccurate, delayed, or unavailable, and must never be relied upon as a substitute for direct supervision, professional medical advice, diagnosis, or emergency response. Always seek the advice of a qualified professional with any questions regarding a medical condition. If you believe a person in your care is experiencing an emergency, contact emergency services immediately.
+
+4. ACCOUNTS AND ACCEPTABLE USE
+
+You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account. You represent that you are at least 18 years of age and, where you enter information about other individuals (including students or children in your care), that you have the legal authority or required consent to do so. You agree to enter only information you are authorized to manage and to remove information when that authorization ends.
+
+5. PRIVACY AND DATA
+
+The Application stores the account email address and the group, device, and name information you choose to enter, using third-party cloud services (including Google Firebase) to authenticate users and store data. Because the Application may be used to record information about children, you agree to comply with all privacy laws applicable to your use, including, where applicable, FERPA, COPPA, and equivalent local laws. The Developer recommends entering initials or nicknames rather than full legal names. You may request deletion of your account and associated data by contacting the Developer at the address in Section 11.
+
+6. MAINTENANCE AND SUPPORT
+
+The Developer is solely responsible for providing any maintenance and support services with respect to the Application, as specified in this Agreement or as required under applicable law. You acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the Application.
+
+7. WARRANTY
+
+THE APPLICATION IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE DEVELOPER DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. The Developer is solely responsible for any product warranties, whether express or implied by law, to the extent not effectively disclaimed. In the event of any failure of the Application to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price (if any) for the Application to you. To the maximum extent permitted by applicable law, Apple will have no other warranty obligation whatsoever with respect to the Application, and any other claims, losses, liabilities, damages, costs, or expenses attributable to any failure to conform to any warranty will be the Developer's sole responsibility.
+
+8. PRODUCT CLAIMS
+
+The Developer, not Apple, is responsible for addressing any claims by you or any third party relating to the Application or your possession and/or use of the Application, including but not limited to: (a) product liability claims; (b) any claim that the Application fails to conform to any applicable legal or regulatory requirement; and (c) claims arising under consumer protection, privacy, or similar legislation.
+
+9. INTELLECTUAL PROPERTY RIGHTS
+
+The Application and all rights therein are and shall remain the property of the Developer or its licensors. In the event of any third-party claim that the Application, or your possession and use of the Application, infringes that third party's intellectual property rights, the Developer, not Apple, will be solely responsible for the investigation, defense, settlement, and discharge of any such claim.
+
+10. LEGAL COMPLIANCE
+
+You represent and warrant that (a) you are not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a "terrorist supporting" country; and (b) you are not listed on any U.S. Government list of prohibited or restricted parties.
+
+11. DEVELOPER CONTACT
+
+Questions, complaints, claims, or data-deletion requests regarding the Application should be directed to:
+
+WovenWatch Developer
+Email: jonathansahagun93@gmail.com
+
+12. THIRD-PARTY TERMS OF AGREEMENT
+
+You must comply with applicable third-party terms of agreement when using the Application (for example, your wireless data service agreement and the terms of service of any connected wearable device).
+
+13. THIRD-PARTY BENEFICIARY
+
+You and the Developer acknowledge and agree that Apple, and Apple's subsidiaries, are third-party beneficiaries of this Agreement, and that, upon your acceptance of the terms and conditions of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against you as a third-party beneficiary thereof.
+
+14. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE DEVELOPER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, USE, OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THE APPLICATION, INCLUDING ANY RELIANCE ON INFORMATION DISPLAYED BY THE APPLICATION. THE DEVELOPER'S TOTAL LIABILITY FOR ALL CLAIMS SHALL NOT EXCEED THE AMOUNT YOU PAID FOR THE APPLICATION, OR FIFTY U.S. DOLLARS (US $50), WHICHEVER IS GREATER. Some jurisdictions do not allow the exclusion or limitation of certain damages, so some of the above limitations may not apply to you.
+
+15. TERMINATION
+
+This Agreement is effective until terminated by you or the Developer. Your rights under this Agreement will terminate automatically without notice if you fail to comply with any of its terms. Upon termination, you must cease all use of the Application and delete all copies. Sections 7, 8, 9, 13, 14, and 16 survive termination.
+
+16. GOVERNING LAW; MISCELLANEOUS
+
+This Agreement is governed by the laws of the State of California, U.S.A., without regard to its conflict-of-law principles, except where the mandatory consumer-protection law of your country of residence applies. If any provision of this Agreement is held invalid, the remaining provisions remain in full force. This Agreement constitutes the entire agreement between you and the Developer regarding the Application and supersedes all prior understandings. The Developer may update this Agreement from time to time; continued use of the Application after an update constitutes acceptance of the revised terms.
+
+By tapping "Accept," you acknowledge that you have read, understood, and agree to be bound by this Agreement.

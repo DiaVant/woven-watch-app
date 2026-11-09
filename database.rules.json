@@ -1,0 +1,50 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "classes": {
+          "$classId": {
+            "name": { ".validate": "newData.isString() && newData.val().length <= 100" },
+            "colorHex": { ".validate": "newData.isString() && newData.val().matches(/^#[0-9A-Fa-f]{6}$/)" },
+            "createdAt": { ".validate": "newData.isNumber()" },
+            "updatedAt": { ".validate": "newData.isNumber()" },
+            "devices": {
+              "$deviceId": {
+                "deviceId": { ".validate": "newData.isString() && newData.val() === $deviceId" },
+                "studentName": { ".validate": "newData.isString() && newData.val().length <= 100" },
+                "updatedAt": { ".validate": "newData.isNumber()" }
+              }
+            },
+            "alertSettings": {
+              "$deviceId": {
+                ".validate": "newData.hasChildren(['readingsInARow', 'repeatEverySeconds', 'minConfidence'])",
+                "readingsInARow": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 4" },
+                "repeatEverySeconds": { ".validate": "newData.val() === 10 || newData.val() === 30 || newData.val() === 60 || newData.val() === 120" },
+                "minConfidence": { ".validate": "newData.val() === 'off' || newData.val() === 'fourOfFive' || newData.val() === 'fiveOfFive'" },
+                "updatedAt": { ".validate": "newData.isNumber()" },
+                "$other": { ".validate": false }
+              }
+            },
+            "quiet": {
+              "$deviceId": { ".validate": "newData.val() === true" }
+            }
+          }
+        },
+        "prefs": {
+          "defaultAlert": {
+            ".validate": "newData.hasChildren(['readingsInARow', 'repeatEverySeconds', 'minConfidence'])",
+            "readingsInARow": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 4" },
+            "repeatEverySeconds": { ".validate": "newData.val() === 10 || newData.val() === 30 || newData.val() === 60 || newData.val() === 120" },
+            "minConfidence": { ".validate": "newData.val() === 'off' || newData.val() === 'fourOfFive' || newData.val() === 'fiveOfFive'" },
+            "updatedAt": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        }
+      }
+    }
+  }
+}
